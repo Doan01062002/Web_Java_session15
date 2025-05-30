@@ -53,6 +53,9 @@ dependencies {
 
     // Thymeleaf
     implementation "org.thymeleaf:thymeleaf-spring6:${thymeleafVersion}"
+
+    // Cloudinary
+    implementation 'com.cloudinary:cloudinary-http45:1.39.0'
 }
 
 test {

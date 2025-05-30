@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${resume.id} ? 'Edit Resume' : 'Create Resume'"></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 th:text="${resume.id} ? 'Edit Resume' : 'Create Resume'"></h1>
+    <form th:action="${resume.id} ? @{/resumes/edit/{id}(id=${resume.id})} : @{/resumes/create}"
+          th:object="${resume}" method="post">
+        <div class="mb-3">
+            <label for="fullName" class="form-label">Full Name</label>
+            <input type="text" class="form-control" id="fullName" th:field="*{fullName}">
+            <div class="text-danger" th:errors="*{fullName}"></div>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" th:field="*{email}">
+            <div class="text-danger" th:errors="*{email}"></div>
+        </div>
+        <div class="mb-3">
+            <label for="phoneNumber" class="form-label">Phone Number</label>
+            <input type="text" class="form-control" id="phoneNumber" th:field="*{phoneNumber}">
+            <div class="text-danger" th:errors="*{phoneNumber}"></div>
+        </div>
+        <div class="mb-3">
+            <label for="education" class="form-label">Education</label>
+            <textarea class="form-control" id="education" th:field="*{education}"></textarea>
+            <div class="text-danger" th:errors="*{education}"></div>
+        </div>
+        <div class="mb-3">
+            <label for="experience" class="form-label">Experience</label>
+            <textarea class="form-control" id="experience" th:field="*{experience}"></textarea>
+            <div class="text-danger" th:errors="*{experience}"></div>
+        </div>
+        <div class="mb-3">
+            <label for="skills" class="form-label">Skills</label>
+            <textarea class="form-control" id="skills" th:field="*{skills}"></textarea>
+            <div class="text-danger" th:errors="*{skills}"></div>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a th:href="@{/resumes}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

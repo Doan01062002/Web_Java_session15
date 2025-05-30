@@ -1,5 +1,6 @@
 package com.example.session15.config;
 
+import com.cloudinary.Cloudinary;
 import com.example.session15.util.ConnectionDB;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -19,11 +20,13 @@ import org.thymeleaf.spring6.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 
 import javax.sql.DataSource;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"com.example.session15.controller", "com.example.session15.model", "com.example.session15.repository"})
+@ComponentScan(basePackages = {"com.example.session15.controller", "com.example.session15.model", "com.example.session15.repository", "com.example.session15.service", "com.example.session15.util", "com.example.session15.service"})
 public class AppConfig implements WebMvcConfigurer {
 
     @Bean
@@ -93,5 +96,15 @@ public class AppConfig implements WebMvcConfigurer {
     @Bean
     public ConnectionDB connectionDB(DataSource dataSource) {
         return new ConnectionDB(dataSource);
+    }
+
+    @Bean
+    public Cloudinary cloudinary() {
+        Map<String, String> config = new HashMap<>();
+        config.put("cloud_name", "dlz6sulzj");
+        config.put("api_key", "785158124563839");
+        config.put("api_secret", "ndEbN-AL0Xf8TupeenWvDVRsU3c");
+        config.put("secure", "true");
+        return new Cloudinary(config);
     }
 }
