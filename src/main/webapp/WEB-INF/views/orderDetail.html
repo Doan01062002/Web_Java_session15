@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Chi tiết đơn hàng</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; }
+        .content { padding: 20px; }
+        .message { color: green; font-size: 1em; }
+        .error { color: red; font-size: 1em; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        .total { font-weight: bold; margin-top: 20px; }
+        .info { margin-top: 20px; }
+        .info p { margin: 5px 0; }
+    </style>
+</head>
+<body>
+<div th:replace="~{fragments/fragments :: header}"></div>
+
+<div class="content">
+    <h1>Chi tiết đơn hàng <span th:text="${order.orderId}"></span></h1>
+    <div th:if="${message}" class="message" th:text="${message}"></div>
+    <div th:if="${error}" class="error" th:text="${error}"></div>
+
+    <div class="info">
+        <h3>Thông tin người nhận</h3>
+        <p><strong>Tên người nhận:</strong> <span th:text="${order.recipientName}"></span></p>
+        <p><strong>Địa chỉ:</strong> <span th:text="${order.address}"></span></p>
+        <p><strong>Số điện thoại:</strong> <span th:text="${order.phonenumber}"></span></p>
+    </div>
+
+    <h3>Danh sách sản phẩm</h3>
+    <table th:if="${orderItems.size() > 0}">
+        <thead>
+        <tr>
+            <th>Tên sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Giá</th>
+            <th>Thành tiền</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="orderItem : ${orderItems}">
+            <td th:text="${orderItem.product.name}"></td>
+            <td th:text="${orderItem.orderDetail.quantity}"></td>
+            <td th:text="${orderItem.orderDetail.currentPrice}"></td>
+            <td th:text="${orderItem.orderDetail.quantity * orderItem.orderDetail.currentPrice}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <p th:if="${orderItems.size() == 0}">Không có sản phẩm trong đơn hàng.</p>
+    <p class="total" th:if="${orderItems.size() > 0}">Tổng số tiền: <span th:text="${totalPrice}"></span></p>
+</div>
+
+<div th:replace="~{fragments/fragments :: footer}"></div>
+</body>
+</html>

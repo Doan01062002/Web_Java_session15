@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng ký thành công</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .success {
+            color: green;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+<h1>Đăng ký thành công!</h1>
+<p class="success">Chào mừng <span th:text="${user.name}"></span>!</p>
+<p>Email: <span th:text="${user.email}"></span></p>
+<p><a th:href="@{/register}">Quay lại form đăng ký</a></p>
+</body>
+</html>

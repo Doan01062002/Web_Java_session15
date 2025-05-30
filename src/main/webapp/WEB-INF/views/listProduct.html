@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Danh sách sản phẩm</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; }
+    .content { padding: 20px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    th { background-color: #f2f2f2; }
+    tr:nth-child(even) { background-color: #f9f9f9; }
+    a { color: #0066cc; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+<div th:replace="~{fragments/fragments :: header}"></div>
+<div class="content">
+  <h1>Danh sách sản phẩm</h1>
+  <table>
+    <thead>
+    <tr>
+      <th>Mã sản phẩm</th>
+      <th>Tên sản phẩm</th>
+      <th>Giá</th>
+      <th>Chi tiết</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product : ${products}">
+      <td th:text="${product.productId}"></td>
+      <td th:text="${product.name}"></td>
+      <td th:text="${product.price}"></td>
+      <td><a th:href="@{/product/{id}(id=${product.productId})}">Xem chi tiết</a></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div th:replace="~{fragments/fragments :: footer}"></div>
+</body>
+</html>

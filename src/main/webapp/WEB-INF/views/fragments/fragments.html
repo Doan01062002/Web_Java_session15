@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<!-- Fragment cho Header -->
+<div th:fragment="header">
+    <header style="background-color: #4CAF50; color: white; padding: 10px;">
+        <h1>My Website</h1>
+        <nav>
+            <a th:href="@{/home}" style="color: white; margin-right: 15px;">Home</a>
+            <a th:href="@{/about}" style="color: white; margin-right: 15px;">About</a>
+            <a th:href="@{/contact}" style="color: white;">Contact</a>
+        </nav>
+    </header>
+</div>
+
+<!-- Fragment cho Footer -->
+<div th:fragment="footer">
+    <footer style="background-color: #f2f2f2; padding: 10px; text-align: center; margin-top: 20px;">
+        <p>&copy; 2025 My Website. All rights reserved.</p>
+    </footer>
+</div>
+</body>
+</html>

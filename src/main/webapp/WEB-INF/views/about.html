@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${pageTitle}"></title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+    .content {
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+<!-- Chèn fragment header -->
+<div th:replace="~{fragments/fragments :: header}"></div>
+
+<!-- Nội dung chính -->
+<div class="content">
+  <h2 th:text="${pageTitle}"></h2>
+  <p>This is the about page. Learn more about our mission and vision.</p>
+</div>
+
+<!-- Chèn fragment footer -->
+<div th:replace="~{fragments/fragments :: footer}"></div>
+</body>
+</html>
